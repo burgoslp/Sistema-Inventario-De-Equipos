@@ -18,6 +18,7 @@ class userTableSeeder extends Seeder
     public function run()
     {
         $user=new User;
+        $user->statu_id=1;
         $user->name='Administrador';
         $user->username='administrador';
         $user->email='administrador@gmail.com';
@@ -26,6 +27,7 @@ class userTableSeeder extends Seeder
         $user->roles()->attach(role::where('name', 'Administrador')->first());
 
         $user=new User;
+        $user->statu_id=1;
         $user->name='Tecnico';
         $user->username='tecnico';
         $user->email='tecnico@gmail.com';

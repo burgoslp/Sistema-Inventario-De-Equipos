@@ -12,7 +12,7 @@ class monitorResolution extends Model
     protected $fillable=[
         'statu_id',
         'name',
-        'descripcion'
+        'description'
     ];
 
     //protected $table = "monitor_resolutions";

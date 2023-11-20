@@ -53,4 +53,9 @@ class statu extends Model
 
         return $this->hasMany(keyboardSize::class);
     }
+
+    public function users(){
+
+        return $this->hasMany(User::class);
+    }
 }

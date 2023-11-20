@@ -12,7 +12,7 @@ class keyboardModel extends Model
     protected $fillable=[
         'statu_id',
         'name',
-        'descripcion'
+        'description'
     ];
 
     //protected $table = "keyboard_models";

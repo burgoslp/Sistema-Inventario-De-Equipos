@@ -12,7 +12,7 @@ class connection extends Model
     protected $fillable=[
         'statu_id',
         'name',
-        'descripcion'
+        'description'
     ];
 
     public function statu(){

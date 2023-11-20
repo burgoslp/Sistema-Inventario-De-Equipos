@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'statu_id',
         'name',
         'username',
         'email',
@@ -58,6 +59,10 @@ class User extends Authenticatable
             }
         };
         return false;
+    }
+
+    public function statu(){
+        return $this->belongsTo(statu::class);
     }
 }
     

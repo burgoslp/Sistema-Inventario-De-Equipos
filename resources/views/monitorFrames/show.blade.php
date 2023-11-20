@@ -1,35 +1,45 @@
 @extends('layouts.app')
 @section('titulo')
-   Parametros / Marcas / Actualizar 
+Parametros / Monitor / Frecuencias / Actualizar 
 @endsection
 @section('enlaces')
-    <a href="{{route('parametros.index')}}" class="font-bold text-gray-600">Parametros /</a>  <a href="{{route('brands.index')}}" class="font-bold text-gray-600">Marcas</a> / Actualizar
+    <a href="{{route('parametros.index')}}" class="font-bold text-gray-600">Parametros /</a>  <a href="{{route('monitorFrames.index')}}" class="font-bold text-gray-600">Monitor / Frecuencias</a> / Actualizar
 @endsection
 @section('contenido')
     <div class="px-5 ">
-        <form action="{{route('brands.update')}}" method="POST">      
+        <form action="{{route('monitorFrames.update')}}" method="POST">      
             @method('PUT')
             @csrf    
-            <input id="name" name="brand_id" type="hidden" placeholder="Ingrese marca" value="{{$brand->id}}">
+            <input id="monitorFrame_id" name="monitorFrame_id" type="hidden" placeholder="Ingrese conexion" value="{{$monitorFrame->id}}">
 
             <div class="grid  bg-white shadow-lg p-5">
                 <div class="mb-5">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                        Nombre:
+                        Cantidad:
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('name') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="name" name="name" type="text" placeholder="Ingrese marca" value="{{$brand->name}}">
-                   @error('name')
-                    <p class="text-red-500 text-xs italic">Debe ingresar un nombre para la marca</p>
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('cantidad') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="cantidad" name="cantidad" type="text" placeholder="Ingrese cantidad" value="{{$monitorFrame->cantidad}}">
+                   @error('cantidad')
+                    <p class="text-red-500 text-xs italic">Debe ingresar una cantidad</p>
                    @enderror
                 </div> 
                 
                 <div  class="mb-5">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Unidad:
+                    </label>
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('unidad') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="unidad" name="unidad" type="text" placeholder="Ingrese unidad" value="{{$monitorFrame->unidad}}">
+                    @error('unidad')
+                        <p class="text-red-500 text-xs italic">Debe ingresar una unidad</p>                        
+                    @enderror
+                </div> 
+
+                <div  class="mb-5">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                         Descripcion:
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('description') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="description" name="description" type="text" placeholder="Ingrese descripción" value="{{$brand->description}}">
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('description') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="description" name="description" type="text" placeholder="Ingrese una descripción" value="{{$monitorFrame->description}}">
                     @error('description')
-                        <p class="text-red-500 text-xs italic">Debe ingresar alguna descripción</p>                        
+                        <p class="text-red-500 text-xs italic">Debe ingresar una unidad</p>                        
                     @enderror
                 </div> 
                 
@@ -40,9 +50,8 @@
                     <div class="relative">
                         <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="statu_id" name="statu_id">
                          @foreach ($status as $statu)
-                            @if ($statu->id == $brand->statu_id)
-                                <option value="{{$statu->id}}" selected>{{$statu->name}}</option>
-                                
+                            @if ($statu->id == $monitorFrame->statu_id)
+                                <option value="{{$statu->id}}" selected>{{$statu->name}}</option>                                
                             @else
                                 <option value="{{$statu->id}}" >{{$statu->name}}</option>                                
                              @endif
@@ -51,7 +60,7 @@
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                           <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                         </div>
-                    </div>., 
+                    </div>
                 </div> 
                 @if (session('mensaje'))
                     <div class="text-center bg-green-500 p-2 rounded-lg mb-6 text-white font-bold uppercase">
