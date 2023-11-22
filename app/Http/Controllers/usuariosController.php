@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\role;
 use App\Models\User;
 use App\Models\statu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class usuariosController extends Controller
 {
@@ -26,13 +28,21 @@ class usuariosController extends Controller
             'name'=>'required|max:100',
             'username'=>'required|max:100',
             'email'=>'required|max:100',
-            'password'=>'required|max:6'
-            
+            'password'=>'required|max:8'            
         ]);
-       
-        User::create($request->all());
+
+        $user=new User;
+        $user->statu_id=$request->statu_id;
+        $user->name=$request->name;
+        $user->username=$request->username;
+        $user->email=$request->email;
+        $user->password=Hash::make($request->password);
+        $user->save();
+        $user->roles()->attach(role::where('name', $request->role)->first());
         
-        return back()->with('mensaje','Conector creado');
+        
+        
+        return back()->with('mensaje','Usuario creado');
     }
 
     public function show($id){
@@ -45,16 +55,25 @@ class usuariosController extends Controller
        
         $this->validate($request, [
             'name'=>'required|max:100',
-            'description'=>'required|max:255'
+            'username'=>'required|max:100',
+            'email'=>'required|max:100',
+            'password'=>'required|max:8' 
         ]);
 
-        User::find($request->User_id)->update($request->all());
+        
+        $user=User::find($request->User_id);
+        $user->statu_id=$request->statu_id;
+        $user->name=$request->name;
+        $user->username=$request->username;
+        $user->email=$request->email;
+        $user->password=Hash::make($request->password);
+        $user->save();
        
-        return back()->with('mensaje','Conector Actualizada');
+        return back()->with('mensaje','Usuario Actualizado');
     }   
 
     public function delete(Request $request){
-        $User = User::find($request->User_id);
+        $User = User::find($request->user_id);
  
         $User->delete();
 
