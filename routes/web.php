@@ -19,6 +19,7 @@ use App\Http\Controllers\monitorResolutionsController;
 use App\Http\Controllers\DashboardAdministradorController;
 use App\Http\Controllers\keyboardModelsController;
 use App\Http\Controllers\keyboardSizesController;
+use App\Http\Controllers\MonitorController;
 use App\Http\Controllers\monitorFramesController;
 
 /*
@@ -102,11 +103,23 @@ Route::put('/usuarios',[usuariosController::class,'update'])->name('usuarios.upd
 Route::delete('/usuarios',[usuariosController::class,'delete'])->name('usuarios.delete');
 Route::post('/usuarios',[usuariosController::class,'store'])->name('usuarios.store');
 
-//rutas para las workstation -> el administrador puede acceder y el tecnico también solo a metodos especificos
-Route::get('/workstations',[workstationsController::class,'index'])->name('workstations.index');
 
 //rutas para los componentes  -> el administrador puede acceder y el tecnico también solo a metodos especificos
 Route::get('/componentes',[componentesController::class,'index'])->name('componentes.index');
+Route::get('/monitores',[MonitorController::class,'index'])->name('monitores.index');
+Route::get('/monitores/create',[MonitorController::class,'create'])->name('monitores.create');
+Route::get('/monitores/show/{id}',[MonitorController::class,'show'])->name('monitores.show');
+Route::put('/monitores',[MonitorController::class,'update'])->name('monitores.update');
+Route::delete('/monitores',[MonitorController::class,'delete'])->name('monitores.delete');
+Route::post('/monitores',[MonitorController::class,'store'])->name('monitores.store');
+
+
+Route::get('/componentes/prueba',[componentesController::class,'prueba'])->name('componentes.prueba');
+
+//rutas para las workstation -> el administrador puede acceder y el tecnico también solo a metodos especificos
+Route::get('/workstations',[workstationsController::class,'index'])->name('workstations.index');
+
+
 
 //rutas para los reportes  -> el administrador puede acceder y el tecnico
 Route::get('/reportes',[reportesController::class,'index'])->name('reportes.index');

@@ -15,7 +15,7 @@
       <div class="bg-white shadow-lg p-5">
           <div class="uppercase font-bold text-gray-400">monitor</div>
           <p class="mb-5 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, beatae. In est officia natus delectus id necessitatibus exercitationem molestias a temporibus recusandae! Ipsa, dicta dolore amet molestias quam possimus nobis.</p>
-          <a href="{{route('brands.index')}}"  class="bg-green-600 px-5 py-2 rounded text-white uppercase">Ver más </a>
+          <a href="{{route('monitores.index')}}"  class="bg-green-600 px-5 py-2 rounded text-white uppercase">Ver más </a>
       </div>
       <div class="bg-white shadow-lg p-5">
           <div class="uppercase font-bold text-gray-400">Teclado</div>
