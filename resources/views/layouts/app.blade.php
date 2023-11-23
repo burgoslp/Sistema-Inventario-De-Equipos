@@ -36,7 +36,7 @@
 </head>
 <body class="bg-gray-100 flex">
   @auth
-    <nav class="w-full sm:w-3/6 md:w-2/5 lg:w-80 h-screen fixed bg-zinc-800 overflow-auto " >
+    <nav id="menuHorizontal" class="hidden sm:block fixed sm:w-3/6 md:w-2/5 lg:w-80 h-screen  bg-zinc-800 overflow-auto " >
       <div class="p-3 pt-6">
         <div class="w-2/4 mx-auto mb-4">
           <img src="{{asset('img/pruebaperfil.jpg')}}" alt="foto de usuario por defecto" class="rounded-full border-4 border-gray-700">
@@ -131,7 +131,7 @@
           </svg> 
         </li>      
 
-        <li class="flex justify-between p-3 items-center border-l-4 border-zinc-800	 hover:border-l-4 hover:border-green-300 hover:text-white cursor-pointer">
+        <li onclick="toggleMenu()" class="flex justify-between p-3 items-center border-l-4 border-zinc-800	 hover:border-l-4 hover:border-green-300 hover:text-white cursor-pointer">
           <span class="font-bold uppercase"> Cerrar Panel</span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -139,17 +139,17 @@
         </li>
       </ul>
     </nav>
-    <div class="espaciado w-full sm:w-3/6 md:w-2/5 lg:w-80 ml-3">
+    <div id="divEspaciado" class="espaciado hidden sm:block sm:w-3/6 md:w-2/5 lg:w-80 ml-3">
     </div>
   @endauth
   
   
   
-  <main class="{{ !auth()->user() ? "w-full":"w-full sm:w-3/6 md:w-3/5 lg:w-4/5"}}  ">
+  <main id="mainContenedor" class="{{ !auth()->user() ? "w-full":"w-full sm:w-3/6 md:w-3/5 lg:w-4/5"}}  ">
         <header class="mx-auto p-4 flex justify-between items-center  bg-white shadow-md ">
           <div class="flex  jutify-center items-center">
               @auth
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 mr-3">
+                <svg onclick="toggleMenu()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 mr-3 cursor-pointer">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
                 </svg>
               @endauth
@@ -199,5 +199,35 @@
     <!--<footer class="mt-10 text-center p-5 text-gray-500 font-bold">
       SIDET - todos los derechos reservados
     </footer>-->
+<script>
+
+  function toggleMenu() {
+    let menu = document.querySelector('#menuHorizontal'),
+        espaciado=document.querySelector('#divEspaciado'),
+        contenedor=document.querySelector('#mainContenedor');
+    if(window.innerWidth > 638 ){
+        
+        menu.classList.toggle('sm:hidden');
+        espaciado.classList.toggle('sm:hidden');
+        if(contenedor.classList.length  == 1){
+
+          contenedor.classList="";
+          contenedor.classList="w-full sm:w-3/6 md:w-3/5 lg:w-4/5";
+        }else{
+          contenedor.classList="";
+          contenedor.classList.toggle('w-full');
+        }     
+    }else{
+     
+      if(menu.classList.length == 1){
+        menu.classList="w-full fixed h-screen bg-zinc-800 overflow-auto";
+
+      }else{
+        menu.classList="hidden";
+      }
+
+    }   
+  }
+</script>
 </body>
 </html>

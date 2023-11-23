@@ -46,9 +46,7 @@ class MonitorController extends Controller
                 $imagen->move($ruta,$nombre_imagen);
                 $data['image']=$nombre_imagen;
             } 
-         
-       
-
+        
         
         $url = 'https://google.com'; // Reemplaza con la URL deseada
         $archivoName="qrimage_monitor_".$nombre_imagen;
