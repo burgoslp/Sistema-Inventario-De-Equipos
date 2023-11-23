@@ -44,21 +44,23 @@ class MonitorController extends Controller
                 
                 $nombre_imagen=$imagen->getClientOriginalName();
                 $imagen->move($ruta,$nombre_imagen);
-                $data=['image'=>$nombre_imagen];
-            }
-        
-          dd($request->file('file'));
+                $data['image']=$nombre_imagen;
+            } 
+         
        
 
         
         $url = 'https://google.com'; // Reemplaza con la URL deseada
-        $archivoName=$nombre_imagen;
-        $archivo = public_path('qrcodes/'); // Ruta donde se guardará el código QR
+        $archivoName="qrimage_monitor_".$nombre_imagen;
+        $ruta='qrcodes/monitores/';
+        if(!file_exists($ruta)){
+            mkdir($ruta);
+        }
+        $archivo = public_path($ruta.$archivoName); // Ruta donde se guardará el código QR
         QrCode::format('png')->size(300)->generate($url, $archivo);
-        $data['qrcode']=$archivo;
+        $data['qrcode']=$archivoName;
         
-        monitor::create($data);
-        
+        monitor::create($data);        
         
         return back()->with('mensaje','Monitor Registrado');
     }

@@ -21,6 +21,7 @@ use App\Http\Controllers\keyboardModelsController;
 use App\Http\Controllers\keyboardSizesController;
 use App\Http\Controllers\MonitorController;
 use App\Http\Controllers\monitorFramesController;
+use App\Http\Controllers\qrcodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,15 +80,12 @@ Route::get('/monitor/sizes/show/{id}',[monitorSizeController::class,'show'])->na
 Route::put('/monitor/sizes',[monitorSizeController::class,'update'])->name('monitorSizes.update');
 Route::delete('/monitor/sizes',[monitorSizeController::class,'delete'])->name('monitorSizes.delete');
 Route::post('/monitor/sizes',[monitorSizeController::class,'store'])->name('monitorSizes.store');
-
-
 Route::get('/keyboard/models',[keyboardModelsController::class,'index'])->name('keyboardModels.index');
 Route::get('/keyboard/models/create',[keyboardModelsController::class,'create'])->name('keyboardModels.create');
 Route::get('/keyboard/models/show/{id}',[keyboardModelsController::class,'show'])->name('keyboardModels.show');
 Route::put('/keyboard/models',[keyboardModelsController::class,'update'])->name('keyboardModels.update');
 Route::delete('/keyboard/models',[keyboardModelsController::class,'delete'])->name('keyboardModels.delete');
 Route::post('/keyboard/models',[keyboardModelsController::class,'store'])->name('keyboardModels.store');
-
 Route::get('/keyboard/sizes',[keyboardSizesController::class,'index'])->name('keyboardSizes.index');
 Route::get('/keyboard/sizes/create',[keyboardSizesController::class,'create'])->name('keyboardSizes.create');
 Route::get('/keyboard/sizes/show/{id}',[keyboardSizesController::class,'show'])->name('keyboardSizes.show');
@@ -103,7 +101,6 @@ Route::put('/usuarios',[usuariosController::class,'update'])->name('usuarios.upd
 Route::delete('/usuarios',[usuariosController::class,'delete'])->name('usuarios.delete');
 Route::post('/usuarios',[usuariosController::class,'store'])->name('usuarios.store');
 
-
 //rutas para los componentes  -> el administrador puede acceder y el tecnico también solo a metodos especificos
 Route::get('/componentes',[componentesController::class,'index'])->name('componentes.index');
 Route::get('/monitores',[MonitorController::class,'index'])->name('monitores.index');
@@ -113,8 +110,8 @@ Route::put('/monitores',[MonitorController::class,'update'])->name('monitores.up
 Route::delete('/monitores',[MonitorController::class,'delete'])->name('monitores.delete');
 Route::post('/monitores',[MonitorController::class,'store'])->name('monitores.store');
 
-
-Route::get('/componentes/prueba',[componentesController::class,'prueba'])->name('componentes.prueba');
+//rutas para las imagenes qr -> el administrador puede acceder y el tecnico también 
+Route::get('/qrcodes/show/{componente}/{name}',[qrcodeController::class,'show'])->name('qrcodes.show');
 
 //rutas para las workstation -> el administrador puede acceder y el tecnico también solo a metodos especificos
 Route::get('/workstations',[workstationsController::class,'index'])->name('workstations.index');

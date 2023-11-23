@@ -21,4 +21,8 @@ class monitor extends Model
     ];
 
     use HasFactory;
+
+    public function statu(){
+        return $this->belongsTo(statu::class);
+    }
 }

@@ -58,4 +58,9 @@ class statu extends Model
 
         return $this->hasMany(User::class);
     }
+
+    public function monitors(){
+
+        return $this->hasMany(monitor::class);
+    }
 }
