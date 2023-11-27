@@ -63,4 +63,16 @@ class statu extends Model
 
         return $this->hasMany(monitor::class);
     }
+
+    public function keyboards(){
+        return $this->hasMany(keyboard::class);
+    }
+
+    public function mice(){
+        return $this->hasMany(mouse::class);
+    }
+
+    public function computers(){
+        return $this->hasMany(computer::class);
+    }
 }

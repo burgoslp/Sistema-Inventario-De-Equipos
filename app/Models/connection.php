@@ -18,4 +18,7 @@ class connection extends Model
     public function statu(){
         return $this->belongsTo(statu::class);
     }
+    public function mice(){
+        return $this->hasMany(mouse::class);
+    }
 }

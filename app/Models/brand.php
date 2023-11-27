@@ -18,4 +18,32 @@ class brand extends Model
     public function statu(){
         return $this->belongsTo(statu::class);
     }
+
+    public function monitors(){
+        return $this->hasMany(monitor::class);
+    }
+
+    public function keyboards(){
+        return $this->hasMany(keyboard::class);
+    }
+
+    public function mice(){
+        return $this->hasMany(mouse::class);
+    }
+
+    public function rams(){
+        return $this->hasMany(ram::class);
+    }
+
+    public function disks(){
+        return $this->hasMany(disk::class);
+    }
+
+    public function processors(){
+        return $this->hasMany(disk::class);
+    }
+
+    public function computers(){
+        return $this->hasMany(computer::class);
+    }
 }

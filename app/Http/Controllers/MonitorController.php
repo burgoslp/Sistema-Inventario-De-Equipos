@@ -32,7 +32,7 @@ class MonitorController extends Controller
 
     public function store(Request $request){
         $this->validate($request, [
-            'serial'=>'required|max:30',
+            'serial'=>'required|max:30|unique:monitors,serial',
             'observation'=>'required|max:100|min:10',
         ]);
             $data=$request->all();
@@ -64,27 +64,34 @@ class MonitorController extends Controller
     }
 
     public function show($id){
-        $monitorFrame=monitor::find($id);
-        $status=statu::all();
-        return view('monitorFrames.show',compact('monitorFrame','status'));
+        $monitor=monitor::find($id);
+        $estatus=statu::all();
+        $marcas=brand::all();
+        $conectores=connector::all();
+        $resoluciones=monitorResolution::all();;
+        $tamaños=monitorSize::all();
+        $frecuencias=monitorFrame::all();
+        return view('monitores.show',compact('monitor','estatus','marcas','conectores','resoluciones','tamaños','frecuencias'));
     }
 
     public function update(Request $request){
        
         $this->validate($request, [
-            'cantidad'=>'required|max:100',
-            'unidad'=>'required|max:100',
-            'description'=>'required|max:255'
+            'serial'=>'required|max:30',
+            'observation'=>'required|max:100|min:10',
         ]);
 
-        monitor::find($request->monitorFrame_id)->update($request->all());
+
+
+
+        monitor::find($request->monitor_id)->update($request->all());
        
         return back()->with('mensaje','Registro del monitor actualizado');
     }   
 
     public function delete(Request $request){
-        $monitorFrame = monitor::find($request->monitorFrame_id); 
-        $monitorFrame->delete();       
+        $monitor = monitor::find($request->monitor_id); 
+        $monitor->delete();       
         return back();
     }
 }

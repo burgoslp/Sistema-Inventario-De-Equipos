@@ -20,4 +20,8 @@ class keyboardSize extends Model
     public function statu(){
         return $this->belongsTo(statu::class);
     }
+
+    public function keyboards(){
+        return $this->hasMany(keyboard::class);
+    }
 }

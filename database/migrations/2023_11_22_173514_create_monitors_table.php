@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('statu_id');
             $table->foreignId('brand_id');
-            $table->foreignId('conector_id');
+            $table->foreignId('connector_id');
             $table->foreignId('monitor_resolution_id');
             $table->foreignId('monitor_frame_id');
             $table->foreignId('monitor_size_id');

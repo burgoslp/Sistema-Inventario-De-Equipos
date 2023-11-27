@@ -11,17 +11,23 @@ use App\Http\Controllers\conexionesController;
 use App\Http\Controllers\historicosController;
 use App\Http\Controllers\parametrosController;
 use App\Http\Controllers\componentesController;
+use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\monitorSizeController;
 use App\Http\Controllers\estadisticasController;
 use App\Http\Controllers\workstationsController;
 use App\Http\Controllers\DashboardTecnicoController;
 use App\Http\Controllers\monitorResolutionsController;
 use App\Http\Controllers\DashboardAdministradorController;
+use App\Http\Controllers\DiskController;
+use App\Http\Controllers\KeyboardController;
 use App\Http\Controllers\keyboardModelsController;
 use App\Http\Controllers\keyboardSizesController;
 use App\Http\Controllers\MonitorController;
 use App\Http\Controllers\monitorFramesController;
+use App\Http\Controllers\MouseController;
+use App\Http\Controllers\ProcessorController;
 use App\Http\Controllers\qrcodeController;
+use App\Http\Controllers\RamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,6 +115,42 @@ Route::get('/monitores/show/{id}',[MonitorController::class,'show'])->name('moni
 Route::put('/monitores',[MonitorController::class,'update'])->name('monitores.update');
 Route::delete('/monitores',[MonitorController::class,'delete'])->name('monitores.delete');
 Route::post('/monitores',[MonitorController::class,'store'])->name('monitores.store');
+Route::get('/teclados',[KeyboardController::class,'index'])->name('teclados.index');
+Route::get('/teclados/create',[KeyboardController::class,'create'])->name('teclados.create');
+Route::get('/teclados/show/{id}',[KeyboardController::class,'show'])->name('teclados.show');
+Route::put('/teclados',[KeyboardController::class,'update'])->name('teclados.update');
+Route::delete('/teclados',[KeyboardController::class,'delete'])->name('teclados.delete');
+Route::post('/teclados',[KeyboardController::class,'store'])->name('teclados.store');
+Route::get('/ratones',[MouseController::class,'index'])->name('ratones.index');
+Route::get('/ratones/create',[MouseController::class,'create'])->name('ratones.create');
+Route::get('/ratones/show/{id}',[MouseController::class,'show'])->name('ratones.show');
+Route::put('/ratones',[MouseController::class,'update'])->name('ratones.update');
+Route::delete('/ratones',[MouseController::class,'delete'])->name('ratones.delete');
+Route::post('/ratones',[MouseController::class,'store'])->name('ratones.store');
+
+Route::get('/ram',[RamController::class,'index'])->name('rams.index');
+Route::get('/ram/create',[RamController::class,'create'])->name('rams.create');
+Route::get('/ram/show/{id}',[RamController::class,'show'])->name('rams.show');
+Route::put('/ram',[RamController::class,'update'])->name('rams.update');
+Route::delete('/ram',[RamController::class,'delete'])->name('rams.delete');
+Route::post('/ram',[RamController::class,'store'])->name('rams.store');
+
+Route::get('/disk',[DiskController::class,'index'])->name('disks.index');
+Route::get('/disk/create',[DiskController::class,'create'])->name('disks.create');
+Route::delete('/disk',[DiskController::class,'delete'])->name('disks.delete');
+Route::post('/disk',[DiskController::class,'store'])->name('disks.store');
+Route::get('/processors',[ProcessorController::class,'index'])->name('processors.index');
+Route::get('/processors/create',[ProcessorController::class,'create'])->name('processors.create');
+Route::delete('/processors',[ProcessorController::class,'delete'])->name('processors.delete');
+Route::post('/processors',[ProcessorController::class,'store'])->name('processors.store');
+
+Route::get('/ordenadores',[ComputerController::class,'index'])->name('computers.index');
+Route::get('/ordenadores/create',[ComputerController::class,'create'])->name('computers.create');
+Route::get('/ordenadores/show/{id}',[ComputerController::class,'show'])->name('computers.show');
+Route::put('/ordenadores',[ComputerController::class,'update'])->name('computers.update');
+Route::delete('/ordenadores',[ComputerController::class,'delete'])->name('computers.delete');
+Route::post('/ordenadores',[ComputerController::class,'store'])->name('computers.store');
+
 
 //rutas para las imagenes qr -> el administrador puede acceder y el tecnico también 
 Route::get('/qrcodes/show/{componente}/{name}',[qrcodeController::class,'show'])->name('qrcodes.show');

@@ -20,4 +20,8 @@ class monitorResolution extends Model
     public function statu(){
         return $this->belongsTo(statu::class);
     }
+
+    public function monitors(){
+        return $this->hasMany(monitor::class);
+    }
 }

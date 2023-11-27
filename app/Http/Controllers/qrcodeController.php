@@ -9,7 +9,7 @@ class qrcodeController extends Controller
     //
 
     public function show($componente,$name){
-
+        
        return view('qrcodes.show',compact('componente','name'));
     }
 }

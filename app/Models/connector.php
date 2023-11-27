@@ -18,4 +18,17 @@ class connector extends Model
     public function statu(){
         return $this->belongsTo(statu::class);
     }
+
+    public function monitors(){
+        return $this->hasMany(monitor::class);
+    }
+
+    public function keyboards(){
+        return $this->hasMany(keyboard::class);
+    }
+
+    public function mice(){
+        return $this->hasMany(mouse::class);
+    }
+    
 }

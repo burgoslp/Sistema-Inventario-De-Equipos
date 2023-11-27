@@ -1,1 +1,1 @@
-<img src="{{asset('qrcodes/monitores/'.$name)}}" alt="">
+<img src="{{asset('qrcodes/'.$componente.'/'.$name)}}" alt="imagen qr de los componentes">

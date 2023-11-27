@@ -1,0 +1,84 @@
+@extends('layouts.app')
+@section('titulo')
+    Componentes / teclados
+@endsection
+@section('enlaces')
+    <a href="{{route('componentes.index')}}" class="font-bold text-gray-600">Componentes /</a>  teclados
+@endsection
+@section('contenido')
+<div class="px-5">
+    <div class="flex justify-end mb-5">
+        <a href="{{route('teclados.create')}}" class="px-4 py-2 bg-green-500 rounded-lg text-white shadow hover:bg-green-600 hover:shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+        </a>  
+    </div>
+    <div class="bg-white shadow-lg">
+        <table class="table-auto text-left border-collapse border border-slate-400 w-full">
+            <thead class="bg-gray-400 text-white">
+              <tr>
+                <th class="border border-slate-300 p-2">#</th>
+                <th class="border border-slate-300 p-2">Serial</th>
+                <th class="border border-slate-300 p-2">Descripción</th>
+                <th class="border border-slate-300 p-2">Estatus</th>
+                <th class="border border-slate-300 p-2">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+                @if (count($teclados) != 0)    
+                    @foreach ($teclados as $teclado)
+                        <tr class="text-gray-500 text-sm">
+                            <td class="border border-slate-300 p-2 ">{{$loop->iteration}}</td>
+                            <td class="border border-slate-300 p-2">{{$teclado->serial}}</td>
+                            <td class="border border-slate-300 p-2">
+                                Observación: {{$teclado->observation}} <br>
+                                Marca: {{$teclado->brand->name}} <br>
+                                Tamaño: {{$teclado->size->name}} <br>
+                                modelo: {{$teclado->model->name}} <br>
+                                Conector: {{$teclado->connector->name}}<br>                                
+                            </td>
+                            <td class="border border-slate-300 p-2">{{$teclado->statu->name}}</td>
+                            <td class="border border-slate-300 flex p-2">
+                                <a href="{{route('teclados.show',$teclado->id)}}" class="bg-blue-500 px-3 py-2 rounded text-white mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                    </svg> 
+                                </a>                         
+                                <form action="{{route('teclados.delete')}}" method="POST" class="mr-3">
+                                    @method('DELETE')
+                                    @csrf
+                                    <input type="hidden" value="{{$teclado->id}}" name="teclado_id">
+                                    <button type="submit"  class="bg-red-500 px-3 py-2 rounded text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                        </svg>     
+                                    </button>
+                                </form> 
+                                <a href="{{route('qrcodes.show',['teclados',$teclado->qrcode])}}"  class="bg-blue-500 px-3 py-2 rounded text-white mr-3" target="_blank" onclick="window.open(this.href, '', 'width=320, height=320'); return false;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z" />
+                                    </svg>
+                                </a>
+                                                          
+                            </td>
+                        </tr>
+                    @endforeach                    
+                @else
+                    <tr class="text-gray-500 text-sm">
+                        <td colspan="5" class="border border-slate-300 p-2 text-center text-xl"> No se han registrado teclados</td>                    
+                    </tr>  
+                @endif
+            </tbody>
+          </table>
+    </div>
+    <div class="p-5">
+        {{$teclados->links()}}
+    </div> 
+    
+    
+
+
+</div>
+@endsection
