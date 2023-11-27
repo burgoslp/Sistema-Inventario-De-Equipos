@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ram;
 use App\Models\brand;
 use App\Models\computer;
+use App\Models\notebook;
 use Illuminate\Http\Request;
 
 class RamController extends Controller
@@ -19,7 +20,8 @@ class RamController extends Controller
 
     public function create(){
         $marcas=brand::all();
-        return view('rams.create',compact('marcas'));
+        $ordenadores=computer::all();
+        return view('rams.create',compact('marcas','ordenadores'));
     }
 
     public function store(Request $request){
@@ -53,7 +55,8 @@ class RamController extends Controller
         $ram=ram::find($id);
         $marcas=brand::all();
         $ordenadores=computer::all();
-        return view('rams.show',compact('ram','marcas','ordenadores'));
+        $laptops=notebook::all();
+        return view('rams.show',compact('ram','marcas','ordenadores','laptops'));
     }
 
     public function update(Request $request){
@@ -77,6 +80,10 @@ class RamController extends Controller
                 $data['notebook_id']=$Valcadbusq[1];
                 $data['computer_id']=null;
             }
+        }else{
+
+            $data['notebook_id']=null;
+            $data['computer_id']=null;
         }
 
         ram::find($request->ram_id)->update($data);

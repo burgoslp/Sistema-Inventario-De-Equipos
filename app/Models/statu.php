@@ -75,4 +75,8 @@ class statu extends Model
     public function computers(){
         return $this->hasMany(computer::class);
     }
+
+    public function notebooks(){
+        return $this->hasMany(notebooks::class);
+    }
 }

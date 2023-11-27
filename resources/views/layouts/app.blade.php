@@ -44,7 +44,7 @@
         <div class="w-9/12 mx-auto text-center">
           <div class="flex justify-center">
             <p class="font-bold uppercase text-white mx-2">
-                Leopoldo pinedo 
+                Armando Rodriguez
             </p>
             <span class="text-white">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -111,12 +111,7 @@
           </svg>
         </li>
         
-        <li class="flex justify-between p-3 items-center {{Route::is('historicos.index') ?'text-gray-50 bg-zinc-900 border-l-4 border-green-300':'border-l-4 border-zinc-800	 hover:border-l-4 hover:border-green-300 hover:text-white cursor-pointer'}}">
-          <a href="{{route('historicos.index')}}" class=" font-bold uppercase">Historicos</a>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
-          </svg>  
-        </li>
+       
       </ul>
       @endif
       <hr>
@@ -157,16 +152,17 @@
           </div>
           @auth
             <div class="flex w-80 justify-end items-center">
+              <!--
               <div class="w-10">
                 <img src="{{asset('img/usuario.png')}}" alt="foto de usuario por defecto">
               </div>
-            
+              
               <div class="flex justify-center items-center pl-2 w-auto">
                 <p class="text-sm text-gray-500 font-bold mr-2">Leopoldo Pinedo</p>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>   
-              </div>
+              </div>-->
               
               <form action="{{route('logout')}}" method="POST">
                 @csrf

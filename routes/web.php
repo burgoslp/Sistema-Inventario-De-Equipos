@@ -25,6 +25,7 @@ use App\Http\Controllers\keyboardSizesController;
 use App\Http\Controllers\MonitorController;
 use App\Http\Controllers\monitorFramesController;
 use App\Http\Controllers\MouseController;
+use App\Http\Controllers\NotebookController;
 use App\Http\Controllers\ProcessorController;
 use App\Http\Controllers\qrcodeController;
 use App\Http\Controllers\RamController;
@@ -127,20 +128,22 @@ Route::get('/ratones/show/{id}',[MouseController::class,'show'])->name('ratones.
 Route::put('/ratones',[MouseController::class,'update'])->name('ratones.update');
 Route::delete('/ratones',[MouseController::class,'delete'])->name('ratones.delete');
 Route::post('/ratones',[MouseController::class,'store'])->name('ratones.store');
-
 Route::get('/ram',[RamController::class,'index'])->name('rams.index');
 Route::get('/ram/create',[RamController::class,'create'])->name('rams.create');
 Route::get('/ram/show/{id}',[RamController::class,'show'])->name('rams.show');
 Route::put('/ram',[RamController::class,'update'])->name('rams.update');
 Route::delete('/ram',[RamController::class,'delete'])->name('rams.delete');
 Route::post('/ram',[RamController::class,'store'])->name('rams.store');
-
 Route::get('/disk',[DiskController::class,'index'])->name('disks.index');
 Route::get('/disk/create',[DiskController::class,'create'])->name('disks.create');
+Route::get('/disk/show/{id}',[DiskController::class,'show'])->name('disks.show');
+Route::put('/disk',[DiskController::class,'update'])->name('disks.update');
 Route::delete('/disk',[DiskController::class,'delete'])->name('disks.delete');
 Route::post('/disk',[DiskController::class,'store'])->name('disks.store');
 Route::get('/processors',[ProcessorController::class,'index'])->name('processors.index');
 Route::get('/processors/create',[ProcessorController::class,'create'])->name('processors.create');
+Route::get('/processors/show/{id}',[ProcessorController::class,'show'])->name('processors.show');
+Route::put('/processors',[ProcessorController::class,'update'])->name('processors.update');
 Route::delete('/processors',[ProcessorController::class,'delete'])->name('processors.delete');
 Route::post('/processors',[ProcessorController::class,'store'])->name('processors.store');
 
@@ -150,6 +153,13 @@ Route::get('/ordenadores/show/{id}',[ComputerController::class,'show'])->name('c
 Route::put('/ordenadores',[ComputerController::class,'update'])->name('computers.update');
 Route::delete('/ordenadores',[ComputerController::class,'delete'])->name('computers.delete');
 Route::post('/ordenadores',[ComputerController::class,'store'])->name('computers.store');
+
+Route::get('/laptops',[NotebookController::class,'index'])->name('laptops.index');
+Route::get('/laptops/create',[NotebookController::class,'create'])->name('laptops.create');
+Route::get('/laptops/show/{id}',[NotebookController::class,'show'])->name('laptops.show');
+Route::put('/laptops',[NotebookController::class,'update'])->name('laptops.update');
+Route::delete('/laptops',[NotebookController::class,'delete'])->name('laptops.delete');
+Route::post('/laptops',[NotebookController::class,'store'])->name('laptops.store');
 
 
 //rutas para las imagenes qr -> el administrador puede acceder y el tecnico también 

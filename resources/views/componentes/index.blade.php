@@ -71,9 +71,9 @@
           <a href="{{route('computers.index')}}"  class="bg-green-600 px-5 py-2 rounded text-white uppercase">Ver más </a>
       </div>
       <div class="bg-white shadow-lg p-5">
-          <div class="uppercase font-bold text-gray-400"></div>
+          <div class="uppercase font-bold text-gray-400">Laptops</div>
           <p class="mb-5 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, beatae. In est officia natus delectus id necessitatibus exercitationem molestias a temporibus recusandae! Ipsa, dicta dolore amet molestias quam possimus nobis.</p>
-          <a href="{{route('conectores.index')}}"  class="bg-green-600 px-5 py-2 rounded text-white uppercase">Ver más </a>
+          <a href="{{route('laptops.index')}}"  class="bg-green-600 px-5 py-2 rounded text-white uppercase">Ver más </a>
       </div>
   </div>
 </div>

@@ -23,7 +23,7 @@ class processor extends Model
         return $this->belongsTo(brand::class);
     }
     
-    public function computers(){
+    public function computer(){
         return $this->belongsTo(computer::class);
     }
 }

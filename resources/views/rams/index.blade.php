@@ -39,7 +39,22 @@
                                 Modelo: {{$ram->modelo}}<br>
                                 Tipo: {{$ram->tipo_memoria == 1 ? 'Ordenador':'Laptop'}}<br>                                
                             </td>
-                            <td class="border border-slate-300 p-2">{{$ram->computer_id ?? $ram->computer_id ?? "Sin asignar"}}</td>
+                            <td class="border border-slate-300 p-2">
+                               
+                                @if (!is_null($ram->computer_id))
+                                    Asignado: {{$ram->computer->serial}}  <br>
+                                    Maquina: Ordenador 
+                                @endif
+
+                                @if (!is_null($ram->notebook_id))
+                                    Asignado: {{$ram->notebook->serial}}  <br>
+                                    Maquina: Laptop
+                                @endif
+
+                                @if (is_null($ram->notebook_id) && is_null($ram->computer_id))
+                                    {{"Sin asignar"}}    
+                                @endif
+                            </td>
                             <td class="border border-slate-300 flex p-2">
                                 <a href="{{route('rams.show',$ram->id)}}" class="bg-blue-500 px-3 py-2 rounded text-white mr-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

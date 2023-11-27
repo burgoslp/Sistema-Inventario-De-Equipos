@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('titulo')
-   Componentes / Ratones / Crear 
+   Componentes / Laptops / Crear 
 @endsection
 @section('enlaces')
-    <a href="{{route('componentes.index')}}" class="font-bold text-gray-600">Componentes /</a>  <a href="{{route('ratones.index')}}" class="font-bold text-gray-600">Ratones</a> / Crear
+    <a href="{{route('componentes.index')}}" class="font-bold text-gray-600">Componentes /</a>  <a href="{{route('laptops.index')}}" class="font-bold text-gray-600">Laptops</a> / Crear
 @endsection
 @section('contenido')
     <div class="px-5 ">
-        <form action="{{route('ratones.store')}}" method="POST" enctype="multipart/form-data">         
+        <form action="{{route('laptops.store')}}" method="POST" enctype="multipart/form-data">         
             @csrf   
             <div class="grid  bg-white shadow-lg p-5">
                 <div class="mb-5">
@@ -19,6 +19,8 @@
                         <p class="text-red-500 text-xs italic">Debe ingresar un serial valido</p>
                     @enderror
                 </div> 
+
+                
                 
                 <div  class="mb-5">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
@@ -30,6 +32,26 @@
                     @enderror
                 </div> 
                 
+                <div  class="mb-5">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                       Nombre del procesador:
+                    </label>
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('processor') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="processor" name="processor" type="text" placeholder="Ingrese nombre procesador">
+                    @error('processor')
+                        <p class="text-red-500 text-xs italic">Debe ingresar un nombre de procesador</p>
+                    @enderror
+                </div> 
+
+                <div  class="mb-5">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                        Nombre de la gráfica:
+                    </label>
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border @error('graphiccards') border-red-500 @enderror rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="graphiccards" name="graphiccards" type="text" placeholder="Ingrese nombre gráfica">
+                    @error('graphiccards')
+                        <p class="text-red-500 text-xs italic">Debe ingresar un nombre de tarjeta grafica</p>
+                    @enderror
+                </div> 
+
                 <div  class="mb-5">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                         Marca:
@@ -44,53 +66,7 @@
                           <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                         </div>
                     </div>
-                </div>   
-                <div  class="mb-5">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                        Conector:
-                    </label>
-                    <div class="relative">
-                        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="connector_id" name="connector_id">
-                            @foreach ($conectores as $conector)
-                                <option value="{{$conector->id}}">{{$conector->name}}</option>
-                            @endforeach
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                        </div>
-                    </div>
-                </div>
-                
-                <div  class="mb-5">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                        Conexión:
-                    </label>
-                    <div class="relative">
-                        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="connection_id" name="connection_id">
-                            @foreach ($conexiones as $conexion)
-                                <option value="{{$conexion->id}}">{{$conexion->name}}</option>
-                            @endforeach
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                        </div>
-                    </div>
-                </div>
-                
-                <div  class="mb-5">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                        Ergonomico:
-                    </label>
-                    <div class="relative">
-                        <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="ergonomic" name="ergonomic">
-                            <option value="0">No</option>
-                            <option value="1">Si</option>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                        </div>
-                    </div>
-                </div>
+                </div> 
 
                 <div  class="mb-5">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
