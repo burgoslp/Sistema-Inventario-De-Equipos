@@ -19,6 +19,7 @@ use App\Http\Controllers\DashboardTecnicoController;
 use App\Http\Controllers\monitorResolutionsController;
 use App\Http\Controllers\DashboardAdministradorController;
 use App\Http\Controllers\DiskController;
+use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\KeyboardController;
 use App\Http\Controllers\keyboardModelsController;
 use App\Http\Controllers\keyboardSizesController;
@@ -146,14 +147,12 @@ Route::get('/processors/show/{id}',[ProcessorController::class,'show'])->name('p
 Route::put('/processors',[ProcessorController::class,'update'])->name('processors.update');
 Route::delete('/processors',[ProcessorController::class,'delete'])->name('processors.delete');
 Route::post('/processors',[ProcessorController::class,'store'])->name('processors.store');
-
 Route::get('/ordenadores',[ComputerController::class,'index'])->name('computers.index');
 Route::get('/ordenadores/create',[ComputerController::class,'create'])->name('computers.create');
 Route::get('/ordenadores/show/{id}',[ComputerController::class,'show'])->name('computers.show');
 Route::put('/ordenadores',[ComputerController::class,'update'])->name('computers.update');
 Route::delete('/ordenadores',[ComputerController::class,'delete'])->name('computers.delete');
 Route::post('/ordenadores',[ComputerController::class,'store'])->name('computers.store');
-
 Route::get('/laptops',[NotebookController::class,'index'])->name('laptops.index');
 Route::get('/laptops/create',[NotebookController::class,'create'])->name('laptops.create');
 Route::get('/laptops/show/{id}',[NotebookController::class,'show'])->name('laptops.show');
@@ -166,8 +165,12 @@ Route::post('/laptops',[NotebookController::class,'store'])->name('laptops.store
 Route::get('/qrcodes/show/{componente}/{name}',[qrcodeController::class,'show'])->name('qrcodes.show');
 
 //rutas para las workstation -> el administrador puede acceder y el tecnico también solo a metodos especificos
-Route::get('/workstations',[workstationsController::class,'index'])->name('workstations.index');
-
+Route::get('/equipos',[EquipmentController::class,'index'])->name('equipments.index');
+Route::get('/equipos/create',[EquipmentController::class,'create'])->name('equipments.create');
+Route::get('/equipos/show/{id}',[EquipmentController::class,'show'])->name('equipments.show');
+Route::put('/equipos',[EquipmentController::class,'update'])->name('equipments.update');
+Route::delete('/equipos',[EquipmentController::class,'delete'])->name('equipments.delete');
+Route::post('/equipos',[EquipmentController::class,'store'])->name('equipments.store');
 
 
 //rutas para los reportes  -> el administrador puede acceder y el tecnico

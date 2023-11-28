@@ -35,4 +35,8 @@ class notebook extends Model
     public function disks(){
         return $this->hasMany(disk::class);
     }
+
+    public function equipment(){
+        return $this->hasOne(equipment::class);
+    }
 }

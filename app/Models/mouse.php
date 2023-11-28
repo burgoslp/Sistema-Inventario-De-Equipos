@@ -38,4 +38,7 @@ class mouse extends Model
         return $this->belongsTo(brand::class);
     }
 
+    public function equipment(){
+        return $this->hasOne(equipment::class);
+    }
 }

@@ -40,4 +40,8 @@ class keyboard extends Model
     public function size(){
         return $this->belongsTo(keyboardSize::class,'keyboard_size_id');  
     }
+
+    public function equipment(){
+        return $this->hasOne(equipment::class);
+    }
 }

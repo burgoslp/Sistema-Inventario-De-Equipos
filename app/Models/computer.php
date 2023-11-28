@@ -39,4 +39,8 @@ class computer extends Model
     public function processors(){
         return $this->hasMany(processor::class);
     }
+
+    public function equipment(){
+        return $this->hasOne(equipment::class);
+    }
 }

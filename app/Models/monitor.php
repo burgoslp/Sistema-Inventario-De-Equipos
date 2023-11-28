@@ -46,4 +46,7 @@ class monitor extends Model
         return $this->belongsTo(monitorResolution::class,'monitor_resolution_id');
     }
     
+    public function equipment(){
+        return $this->hasOne(equipment::class);
+    }
 }
