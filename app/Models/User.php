@@ -64,5 +64,9 @@ class User extends Authenticatable
     public function statu(){
         return $this->belongsTo(statu::class);
     }
+
+    public function equipment(){
+        return $this->hasMany(equipment::class);
+    }
 }
     

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('equipment', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('computer_id');
-            $table->foreignId('notebook_id');
+            $table->foreignId('computer_id')->nullable();
+            $table->foreignId('notebook_id')->nullable();
             $table->foreignId('monitor_id');
             $table->foreignId('keyboard_id');
             $table->foreignId('mouse_id');

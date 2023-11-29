@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('titulo')
-    equipments / equipments
+    Estaciones de trabajo 
 @endsection
 @section('enlaces')
-      
+      Estaciones de trabajo
 @endsection
 @section('contenido')
 <div class="px-5">
@@ -19,7 +19,7 @@
             <thead class="bg-gray-400 text-white">
               <tr>
                 <th class="border border-slate-300 p-2">#</th>
-                <th class="border border-slate-300 p-2">Serial</th>
+                <th class="border border-slate-300 p-2">Registro</th>
                 <th class="border border-slate-300 p-2">Descripción</th>
                 <th class="border border-slate-300 p-2">Estatus</th>
                 <th class="border border-slate-300 p-2">Acción</th>
@@ -30,9 +30,9 @@
                     @foreach ($equipments as $equipment)
                         <tr class="text-gray-500 text-sm">
                             <td class="border border-slate-300 p-2 ">{{$loop->iteration}}</td>
-                            <td class="border border-slate-300 p-2">{{$equipment->user_id}}</td>
+                            <td class="border border-slate-300 p-2">{{$equipment->user->username}}</td>
                             <td class="border border-slate-300 p-2">
-                                Observación: {{$equipment->id_monitor}} <br>
+                                Monitor: {{$equipment->monitor->size->cantidad}} {{$equipment->monitor->size->unidad}}<br>
                                                               
                             </td>
                             <td class="border border-slate-300 p-2">{{$equipment->statu->name}}</td>
@@ -57,7 +57,7 @@
                     @endforeach                    
                 @else
                     <tr class="text-gray-500 text-sm">
-                        <td colspan="5" class="border border-slate-300 p-2 text-center text-xl"> No se han registrado equipos</td>                    
+                        <td colspan="5" class="border border-slate-300 p-2 text-center text-xl"> No se han registrado estaciones de trabajo</td>                    
                     </tr>  
                 @endif
             </tbody>

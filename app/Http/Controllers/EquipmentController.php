@@ -35,21 +35,52 @@ class EquipmentController extends Controller
 
         $data=$request->all();
         $this->validate($request, [
-            'cod_oficina'=>'required',            
+            'cod_oficina'=>'required',
+            'machine_id'=>['required',            
+                    function ($attribute, $value, $fail) {
+                        if ($value == '-1') {
+                            $fail('El campo no puede tener el valor específico.');
+                        }
+                    }
+                ],
+            'monitor_id'=>[
+                function ($attribute, $value, $fail) {
+                    if ($value == '-1') {
+                        $fail('El campo no puede tener el valor específico.');
+                    }
+                }
+            ],
+            'keyboard_id'=>[
+                function ($attribute, $value, $fail) {
+                    if ($value == '-1') {
+                        $fail('El campo no puede tener el valor específico.');
+                    }
+                }
+            ],
+            'mouse_id'=>[
+                function ($attribute, $value, $fail) {
+                    if ($value == '-1') {
+                        $fail('El campo no puede tener el valor específico.');
+                    }
+                }
+            ],
+                        
         ]);
-        dd($request);
        
         $Valcadbusq=explode('|',$data['machine_id']);
         if(isset($Valcadbusq[1])){
-            if($Valcadbusq[0] == 1 AND strlen($Valcadbusq[1]) !=0){//laptop
+            if($Valcadbusq[0] == 1 AND strlen($Valcadbusq[1]) !=0){//1 ordenador
                 $data['computer_id']=$Valcadbusq[1];
                 $data['notebook_id']=null;
-            }else if($Valcadbusq[0] == 0 AND strlen($Valcadbusq[1]) !=0){//ordenador
+                
+            }else if($Valcadbusq[0] == 0 AND strlen($Valcadbusq[1]) !=0){// 0 laptop
                 $data['notebook_id']=$Valcadbusq[1];
                 $data['computer_id']=null;
+               
             }
-        }
        
+
+        }
         equipment::create($data);
         
         return back()->with('mensaje','Equipo informático cargado');

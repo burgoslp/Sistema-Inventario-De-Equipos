@@ -20,6 +20,11 @@ class equipment extends Model
         'cod_oficina'
     ];
 
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    
     public function statu(){
         return $this->belongsTo(statu::class);
     }
