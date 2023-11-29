@@ -17,7 +17,9 @@ class DiskController extends Controller
 
     public function create(){
         $marcas=brand::all();
-        return view('disks.create',compact('marcas'));
+        $ordenadores=computer::all();
+        $laptops=notebook::all();
+        return view('disks.create',compact('marcas','ordenadores','laptops'));
     }
 
     public function store(Request $request){

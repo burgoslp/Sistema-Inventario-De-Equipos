@@ -173,6 +173,12 @@
                         {{session('mensaje')}}
                     </div>
                 @endif
+
+                @if (session('error'))
+                    <div class="text-center bg-red-500 p-2 rounded-lg mb-6 text-white font-bold uppercase">
+                        {{session('error')}}
+                    </div>
+                @endif
                 <div class="md:text-right">
                      <input type="submit" value="Guardar" class="w-full md:w-auto px-3 py-2 bg-green-600 rounded text-white hover:bg-green-700 cursor-pointer">
                 </div>

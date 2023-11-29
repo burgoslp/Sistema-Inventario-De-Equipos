@@ -22,11 +22,11 @@ class EquipmentController extends Controller
     }
 
     public function create(){
-        $laptops=notebook::all();
-        $ordenadores=computer::all();
-        $monitores=monitor::all();
-        $ratones=mouse::all();
-        $teclados=keyboard::all();
+        $laptops=notebook::where('statu_id','1')->get();
+        $ordenadores=computer::where('statu_id','1')->get();
+        $monitores=monitor::where('statu_id','1')->get();
+        $ratones=mouse::where('statu_id','1')->get();
+        $teclados=keyboard::where('statu_id','1')->get();
         $estatus=statu::all();
         return view('equipments.create',compact('laptops','ordenadores','monitores','ratones','teclados','estatus'));
     }
@@ -75,14 +75,22 @@ class EquipmentController extends Controller
                 
             }else if($Valcadbusq[0] == 0 AND strlen($Valcadbusq[1]) !=0){// 0 laptop
                 $data['notebook_id']=$Valcadbusq[1];
-                $data['computer_id']=null;
-               
+                $data['computer_id']=null;               
             }
        
 
         }
-        equipment::create($data);
         
+
+        equipment::create($data);
+        monitor::find($data['monitor_id'])->update(['statu_id'=>2]);
+        keyboard::find($data['keyboard_id'])->update(['statu_id'=>2]);
+        mouse::find($data['mouse_id'])->update(['statu_id'=>2]);
+        if(!is_null($data['computer_id'])){
+            computer::find($data['computer_id'])->update(['statu_id'=>2]);
+        }else if(!is_null($data['notebook_id'])){
+            notebook::find($data['notebook_id'])->update(['statu_id'=>2]);
+        }        
         return back()->with('mensaje','Equipo informático cargado');
     }
 
@@ -126,8 +134,19 @@ class EquipmentController extends Controller
     } 
 
     public function delete(Request $request){
-        $ram = equipment::find($request->ram_id); 
-        $ram->delete();       
+        $equipment = equipment::find($request->equipment_id); 
+
+       
+        $equipment->monitor->update(['statu_id'=>'1']);
+        $equipment->keyboard->update(['statu_id'=>'1']);
+        $equipment->mouse->update(['statu_id'=>'1']);
+        if(!is_null($equipment->computer)){
+            $equipment->computer->update(['statu_id'=>'1']);
+        }
+        if(!is_null($equipment->notebook)){
+            $equipment->notebook->update(['statu_id'=>'1']);
+        }
+        $equipment->delete();       
         return back();
     }
 }

@@ -21,7 +21,8 @@ class RamController extends Controller
     public function create(){
         $marcas=brand::all();
         $ordenadores=computer::all();
-        return view('rams.create',compact('marcas','ordenadores'));
+        $laptops=notebook::all();
+        return view('rams.create',compact('marcas','ordenadores','laptops'));
     }
 
     public function store(Request $request){
