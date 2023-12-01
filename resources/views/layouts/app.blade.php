@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SIDET - @yield('titulo')</title>
+    <title>PII - @yield('titulo')</title>
     <style>
         nav::-webkit-scrollbar {
             -webkit-appearance: none;
@@ -39,12 +39,12 @@
     <nav id="menuHorizontal" class="hidden sm:block fixed sm:w-3/6 md:w-2/5 lg:w-80 h-screen  bg-zinc-800 overflow-auto " >
       <div class="p-3 pt-6">
         <div class="w-2/4 mx-auto mb-4">
-          <img src="{{asset('img/pruebaperfil.jpg')}}" alt="foto de usuario por defecto" class="rounded-full border-4 border-gray-700">
+          <img src="{{is_null(auth()->user()->image) ?  asset('img/usuario.png') : asset('img/users/'.auth()->user()->image)}}" alt="foto de usuario por defecto" class="rounded-full border-4 border-gray-700">
         </div>
         <div class="w-9/12 mx-auto text-center">
           <div class="flex justify-center">
             <p class="font-bold uppercase text-white mx-2">
-                Armando Rodriguez
+                {{auth()->user()->name}}
             </p>
             <span class="text-white">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -52,7 +52,7 @@
               </svg>                         
             </span>
           </div>
-          <p class="text-xs text-gray-500 uppercase">Administrador</p>
+          <p class="text-xs text-gray-500 uppercase">{{auth()->user()->hasRole()}}</p>
         </div>
       </div>
 
@@ -148,7 +148,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
                 </svg>
               @endauth
-            <h1 class="text-3xl font-black"><a href="{{route('login')}}">SIDET</a></h1> 
+            <h1 class="text-2xl font-black uppercase"><a href="{{route('login')}}">Panamericano Intelligent Inventory</a></h1> 
           </div>
           @auth
             <div class="flex w-80 justify-end items-center">

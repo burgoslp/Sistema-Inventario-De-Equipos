@@ -33,6 +33,6 @@ class userTableSeeder extends Seeder
         $user->email='tecnico@gmail.com';
         $user->password=Hash::make('123456');
         $user->save();
-        $user->roles()->attach(role::where('name', 'Te cnico')->first());   
+        $user->roles()->attach(role::where('name', 'Tecnico')->first());   
     }
 }

@@ -57,16 +57,30 @@ class usuariosController extends Controller
             'name'=>'required|max:100',
             'username'=>'required|max:100',
             'email'=>'required|max:100',
-            'password'=>'required|max:8' 
         ]);
-
-        
-        $user=User::find($request->User_id);
-        $user->statu_id=$request->statu_id;
-        $user->name=$request->name;
-        $user->username=$request->username;
-        $user->email=$request->email;
-        $user->password=Hash::make($request->password);
+        $data=$request->all();
+        if ($imagen=$request->file('file')) {
+                $ruta="img/users/";
+                if(!file_exists($ruta)){
+                    mkdir($ruta);
+                }
+                
+                $nombre_imagen=$imagen->getClientOriginalName();
+                $imagen->move($ruta,$nombre_imagen);
+                $data['image']=$nombre_imagen;
+        } 
+        $user=User::find($data['User_id']);
+        $user->statu_id=$data['statu_id'];
+        $user->name=$data['name'];
+        $user->username=$data['username'];
+        $user->email=$data['email'];
+        if(!is_null($data['password'])){
+            $user->password=Hash::make($data['password']);
+        }
+        if(isset($data['image'])){
+            $user->image=$data['image'];
+        }
+       
         $user->save();
        
         return back()->with('mensaje','Usuario Actualizado');
