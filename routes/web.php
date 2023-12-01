@@ -159,8 +159,6 @@ Route::get('/laptops/show/{id}',[NotebookController::class,'show'])->name('lapto
 Route::put('/laptops',[NotebookController::class,'update'])->name('laptops.update');
 Route::delete('/laptops',[NotebookController::class,'delete'])->name('laptops.delete');
 Route::post('/laptops',[NotebookController::class,'store'])->name('laptops.store');
-
-
 //rutas para las imagenes qr -> el administrador puede acceder y el tecnico también 
 Route::get('/qrcodes/show/{componente}/{name}',[qrcodeController::class,'show'])->name('qrcodes.show');
 

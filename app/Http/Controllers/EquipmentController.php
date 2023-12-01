@@ -95,10 +95,16 @@ class EquipmentController extends Controller
     }
 
     public function show($id){
-        $marcas=brand::all();
-        $ordenadores=computer::all();
+
+        $equipment=equipment::find($id);
         $laptops=notebook::all();
-        return view('equipments.show',compact('marcas','ordenadores','laptops'));
+        $ordenadores=computer::all();
+        $monitores=monitor::all();
+        $ratones=mouse::all();
+        $teclados=keyboard::all();
+        $estatus=statu::all();
+        
+        return view('equipments.show',compact('equipment','laptops','ordenadores','monitores','ratones','teclados','estatus'));
     }
 
     public function update(Request $request){
