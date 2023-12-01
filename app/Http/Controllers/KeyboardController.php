@@ -75,13 +75,18 @@ class KeyboardController extends Controller
             'serial'=>'required|max:30',
             'observation'=>'required|max:100|min:10',
         ]);
-
-        keyboard::find($request->monitor_id)->update($request->all());       
+        $keyboard=keyboard::find($request->keyboard_id);       
+        if(is_null($keyboard->equipment)){
+            $keyboard->update($request->all());
+        }else{
+            return back()->with('error','No se puede Actualizar este registro porque pertenece a una workstation');
+        }
+        
         return back()->with('mensaje','Registro del teclado actualizado');
     }   
     public function delete(Request $request){
         
-        $keyboard = keyboard::find($request->monitor_id); 
+        $keyboard = keyboard::find($request->keyboard_id); 
         $keyboard->delete();       
         return back();
     }

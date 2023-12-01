@@ -74,10 +74,14 @@ class MouseController extends Controller
             'observation'=>'required|max:100|min:10',
         ]);
 
+        $mouse=mouse::find($request->mouse_id);       
+        if(is_null($mouse->equipment)){
+            $mouse->update($request->all());
+        }else{
+            return back()->with('error','No se puede Actualizar este registro porque pertenece a una workstation');
+        }
 
 
-
-        mouse::find($request->mouse_id)->update($request->all());
        
         return back()->with('mensaje','Registro del mouse actualizado');
     }   

@@ -22,6 +22,7 @@
                 <th class="border border-slate-300 p-2">Serial</th>
                 <th class="border border-slate-300 p-2">Descripción</th>
                 <th class="border border-slate-300 p-2">Estatus</th>
+                <th class="border border-slate-300 p-2">Asignación</th>
                 <th class="border border-slate-300 p-2">Acción</th>
               </tr>
             </thead>
@@ -38,6 +39,13 @@
                                 Conector: {{$raton->connector->name}}<br>                                
                             </td>
                             <td class="border border-slate-300 p-2">{{$raton->statu->name}}</td>
+                            <td class="border border-slate-300 p-2">
+                                @if (isset($raton->equipment->id))
+                                    Asignado 
+                                @else
+                                    Sin asignar
+                                @endif
+                            </td>
                             <td class="border border-slate-300 flex p-2">
                                 <a href="{{route('ratones.show',$raton->id)}}" class="bg-blue-500 px-3 py-2 rounded text-white mr-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

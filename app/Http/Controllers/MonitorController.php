@@ -82,9 +82,14 @@ class MonitorController extends Controller
         ]);
 
 
-
-
-        monitor::find($request->monitor_id)->update($request->all());
+        $monitor=monitor::find($request->monitor_id);
+        if(is_null($monitor->equipment)){
+            $monitor->update($request->all());
+        }else{
+            return back()->with('error','No se puede Actualizar este registro porque pertenece a una workstation');
+        }
+        
+        //$monitor->update($request->all());
        
         return back()->with('mensaje','Registro del monitor actualizado');
     }   

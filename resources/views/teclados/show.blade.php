@@ -10,7 +10,7 @@
         <form action="{{route('teclados.update')}}" method="POST" enctype="multipart/form-data">   
             @method('PUT')      
             @csrf   
-            <input type="hidden" name="monitor_id" value="{{$teclado->id}}">
+            <input type="hidden" name="keyboard_id" value="{{$teclado->id}}">
             <div class="grid  bg-white shadow-lg p-5">
                 <div class="flex justify-center">
                     <img src="{{asset('img/teclados/'.$teclado->image)}}" alt="imagen del monitor real" class="rounded-full w-1/4">
@@ -154,6 +154,11 @@
                         {{session('mensaje')}}
                     </div>
                 @endif
+                @if (session('error'))
+                <div class="text-center bg-red-500 p-2 rounded-lg mb-6 text-white font-bold uppercase">
+                    {{session('error')}}
+                </div>
+            @endif
                 <div class="md:text-right">
                      <input type="submit" value="Guardar" class="w-full md:w-auto px-3 py-2 bg-green-600 rounded text-white hover:bg-green-700 cursor-pointer">
                 </div>

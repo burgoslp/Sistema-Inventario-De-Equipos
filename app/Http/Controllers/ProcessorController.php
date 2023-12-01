@@ -17,7 +17,8 @@ class ProcessorController extends Controller
 
     public function create(){
         $marcas=brand::all();
-        return view('processors.create',compact('marcas'));
+        $ordenadores=computer::all();
+        return view('processors.create',compact('marcas','ordenadores'));
     }
 
     public function store(Request $request){
@@ -43,8 +44,7 @@ class ProcessorController extends Controller
         $processor=processor::find($id);
         $marcas=brand::all();
         $ordenadores=computer::all();
-        $laptops=notebook::all();
-        return view('processors.show',compact('processor','marcas','ordenadores','laptops'));
+        return view('processors.show',compact('processor','marcas','ordenadores'));
     }
 
     public function update(Request $request){
