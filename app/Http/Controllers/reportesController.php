@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\computer;
 use App\Models\keyboard;
 use App\Models\monitor;
 use App\Models\mouse;
+use App\Models\notebook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,8 +16,9 @@ class reportesController extends Controller
         $monitores=monitor::all();
         $teclados=keyboard::all();
         $ratones=mouse::all();
-
-        return view('reportes.index',compact('monitores','teclados','ratones'));
+        $ordenadores=computer::all();
+        $laptops=notebook::all();
+        return view('reportes.index',compact('monitores','teclados','ratones','ordenadores','laptops'));
     }
 
     public function show(Request $request){
